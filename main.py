@@ -59,13 +59,17 @@ def binaryTo8Bits(binaryList):
     print(binaryList2)
     groupBinaries(binaryList2)
 
-def groupBinaries(binaryList):
+def groupBinaries(binary_list):
     """
     take all binary 8bit and concatenate in one string
     :param binaryList: Array of 8bits elements
-    :return:
+    :return: One String of all 8bits
     """
-    return True;
+    binary_string = ""
+    for binary in binary_list:
+        binary_string += binary
+    separateGroupBinariesIn6Bits(binary_string)
+    
 
 def separateGroupBinariesIn6Bits(binariesString):
     """
