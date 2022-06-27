@@ -1,8 +1,3 @@
-
-from operator import ne
-import string
-
-
 def getUserInput():
     """
     Function that ask the User for a string
@@ -34,18 +29,18 @@ def charToAscii(charList):
         index += 1;
     asciiToBinary(charList)
 
-def asciiToBinary(charList):
+def asciiToBinary(asciiList):
     """
     Function that modify each ascii element in the array to a binary element
-    :param charList: Array of ascii element
+    :param asciiList: Array of ascii element
     :return: to modification of each binary element to a binary element on 8 Bits
     """
     index = 0
-    while index < len(charList):
-        charList[index] = str(int(bin(charList[index])[2:]))
-        index += 1;
-    print(charList)
-    return True;
+    while index < len(asciiList):
+        asciiList[index] = str(int(bin(asciiList[index])[2:]))
+        index += 1
+    print(asciiList)
+    return True
 
 def binaryTo8Bits(binaryChar):
     """
@@ -53,7 +48,7 @@ def binaryTo8Bits(binaryChar):
     :param binaryChar:
     :return:
     """
-    return true;
+    return True
 
 def groupBinaries(binaryList):
     """
@@ -61,7 +56,7 @@ def groupBinaries(binaryList):
     :param binaryList:
     :return:
     """
-    return true;
+    return True
 
 def separateGroupBinariesIn6Bits(binariesString):
     """
@@ -69,7 +64,7 @@ def separateGroupBinariesIn6Bits(binariesString):
     :param binariesString:
     :return:
     """
-    return true;
+    return True
 
 def allElementIn6Bits(binaries6BitsList):
     """
@@ -77,7 +72,7 @@ def allElementIn6Bits(binaries6BitsList):
     :param binaries6BitsList:
     :return:
     """
-    return true;
+    return True
 
 def sixBitsToDecimal(binary6BitsChar):
     """
@@ -108,7 +103,7 @@ def decimalToBase64(decimalChar):
       'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
       'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
       'w', 'x', 'y', 'z', '0', '1', '2', '3',
-      '4', '5', '6', '7', '8', '9', '+', '/'
+      '4', '5', '6', '7', '8', '9', '+', '/',
     ]
     
     for index, value in enumerate(decimalChar):
