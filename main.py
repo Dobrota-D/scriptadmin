@@ -1,7 +1,4 @@
 
-from operator import ne
-import string
-
 
 def getUserInput():
     """
@@ -44,24 +41,31 @@ def asciiToBinary(charList):
     while index < len(charList):
         charList[index] = str(int(bin(charList[index])[2:]))
         index += 1;
-    print(charList)
-    return True;
+    binaryTo8Bits(charList)
 
-def binaryTo8Bits(binaryChar):
+def binaryTo8Bits(binaryList):
     """
-
-    :param binaryChar:
-    :return:
+    Function that convert binary list in 8bits list
+    :param binaryList: Array of binary 8bits element
+    :return: Array of 8bits list
     """
-    return true;
+    binaryList2 = []
+    for bnr in binaryList:
+        x = bnr[::-1]  # this reverses an array
+        while len(x) < 8:
+            x += '0'
+        bnr = x[::-1]
+        binaryList2.append(bnr)
+    print(binaryList2)
+    groupBinaries(binaryList2)
 
 def groupBinaries(binaryList):
     """
-
-    :param binaryList:
+    take all binary 8bit and concatenate in one string
+    :param binaryList: Array of 8bits elements
     :return:
     """
-    return true;
+    return True;
 
 def separateGroupBinariesIn6Bits(binariesString):
     """
@@ -69,7 +73,7 @@ def separateGroupBinariesIn6Bits(binariesString):
     :param binariesString:
     :return:
     """
-    return true;
+    return True;
 
 def allElementIn6Bits(binaries6BitsList):
     """
@@ -77,7 +81,7 @@ def allElementIn6Bits(binaries6BitsList):
     :param binaries6BitsList:
     :return:
     """
-    return true;
+    return True;
 
 def sixBitsToDecimal(binary6BitsChar):
     """
