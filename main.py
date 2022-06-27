@@ -6,6 +6,7 @@ def get_user_input():
     user_input = input("Entrez des caractères à convertir base64: ")
     seperate_char(user_input)
 
+
 def seperate_char(user_input):
     """
     Function that separate all character in an array
@@ -16,6 +17,7 @@ def seperate_char(user_input):
     for x in user_input:
         char_list.append(x)
     char_to_ascii(char_list)
+
 
 def char_to_ascii(char_list):
     """
@@ -28,6 +30,7 @@ def char_to_ascii(char_list):
         char_list[index] = ord(char_list[index])
         index += 1;
     ascii_to_binary(char_list)
+
 
 def ascii_to_binary(ascii_list):
     """
@@ -42,6 +45,7 @@ def ascii_to_binary(ascii_list):
     print(ascii_list)
     return True
 
+
 def binary_to_8bits(binaryChar):
     """
 
@@ -49,6 +53,7 @@ def binary_to_8bits(binaryChar):
     :return:
     """
     return True
+
 
 def group_binaries(binaryList):
     """
@@ -58,6 +63,7 @@ def group_binaries(binaryList):
     """
     return True
 
+
 def separate_group_binaries_in6bits(binariesString):
     """
 
@@ -65,6 +71,7 @@ def separate_group_binaries_in6bits(binariesString):
     :return:
     """
     return True
+
 
 def all_element_in_6bits(binaries6BitsList):
     """
@@ -74,6 +81,7 @@ def all_element_in_6bits(binaries6BitsList):
     """
     return True
 
+
 def six_bits_to_decimal(binary_6bits_char):
     """
     Transform each binary element of the array into its decimal value
@@ -81,12 +89,13 @@ def six_bits_to_decimal(binary_6bits_char):
     :param binary_6bits_char: array of 6bits binary elements
     :return: array of decimal values
     """
-    
+
     for index, value in enumerate(binary_6bits_char):
-      binary_6bits_char[index] = int(value,2)
-      
+        binary_6bits_char[index] = int(value, 2)
+
     decimal_to_base64(binary_6bits_char)
-      
+
+
 def decimal_to_base64(decimal_char):
     """
     Transform each decimal number by its value in base 64
@@ -94,23 +103,23 @@ def decimal_to_base64(decimal_char):
     :param decimal_char: array of decimal values
     :return: array of base 64 elements
     """
-    
+
     base64_table = [
-      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-      'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-      'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-      'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
-      'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-      'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-      'w', 'x', 'y', 'z', '0', '1', '2', '3',
-      '4', '5', '6', '7', '8', '9', '+', '/',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+        'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
+        'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+        'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+        'w', 'x', 'y', 'z', '0', '1', '2', '3',
+        '4', '5', '6', '7', '8', '9', '+', '/',
     ]
-    
+
     for index, value in enumerate(decimal_char):
-      decimal_char[index] = base64_table[(int(value))]
-      
+        decimal_char[index] = base64_table[(int(value))]
+
     base64_list_to_string(decimal_char)
-    
+
 
 def base64_list_to_string(base64_list):
     """
@@ -119,10 +128,10 @@ def base64_list_to_string(base64_list):
     :param base64_list: array of base64 elements
     :return: string
     """
-    
+
     base64_string = ''.join(base64_list)
     complete_base64_string_to8(base64_string)
-    
+
 
 def complete_base64_string_to8(base64_string):
     """
@@ -132,10 +141,11 @@ def complete_base64_string_to8(base64_string):
     :return: base64 encoded string
     """
     nearest_multiple = ((len(base64_string) + 7) & (-8))
-    
+
     for i in range(nearest_multiple - len(base64_string)):
-      base64_string += '='
-      
+        base64_string += '='
+
     print(base64_string)
 
-getUserInput()
+
+get_user_input()
