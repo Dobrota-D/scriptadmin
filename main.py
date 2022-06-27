@@ -42,26 +42,37 @@ def ascii_to_binary(ascii_list):
     while index < len(ascii_list):
         ascii_list[index] = str(int(bin(ascii_list[index])[2:]))
         index += 1
-    print(ascii_list)
-    return True
+    binaryTo8Bits(charList)
 
 
 def binary_to_8bits(binaryChar):
     """
-
-    :param binaryChar:
-    :return:
+    Function that convert binary list in 8bits list
+    :param binaryList: Array of binary 8bits element
+    :return: Array of 8bits list
     """
-    return True
+    binaryList2 = []
+    for bnr in binaryList:
+        x = bnr[::-1]  # this reverses an array
+        while len(x) < 8:
+            x += '0'
+        bnr = x[::-1]
+        binaryList2.append(bnr)
+    print(binaryList2)
+    groupBinaries(binaryList2)
 
 
 def group_binaries(binaryList):
     """
-
-    :param binaryList:
-    :return:
+    take all binary 8bit and concatenate in one string
+    :param binaryList: Array of 8bits elements
+    :return: One String of all 8bits
     """
-    return True
+    binary_string = ""
+    for binary in binary_list:
+        binary_string += binary
+    separateGroupBinariesIn6Bits(binary_string)
+    
 
 
 def separate_group_binaries_in6bits(binariesString):
