@@ -1,18 +1,95 @@
-# Une année est bissextile si elle respecte l'un des deux critaires suivants.
-# L'année est divisible par 4 sans être divisible pas 100
-# L'année est divisible par 400
 
+def getUserInput():
+    """
 
-def print_year():
-    yearInput = int(input("Enter your year to know if is a leap year"));
-    leapyear(yearInput)
+    :return:
+    """
+    return true;
 
-def leapyear(year):
-    if(year%4==0 and year%100!= 0 or year%400==0):
-        print("is an leap year")
-    else:
-        print("is not and leap year")
-    print_year()
+def seperateChar(userInput):
+    """
 
-print_year()
+    :param userInput:
+    :return:
+    """
+    return true;
 
+def charToAscii(char):
+    """
+
+    :param char:
+    :return:
+    """
+    return true;
+
+def asciiToBinary(asciiChar):
+    """
+
+    :param asciiChar:
+    :return:
+    """
+    return true;
+
+def binaryTo8Bits(binaryChar):
+    """
+
+    :param binaryChar:
+    :return:
+    """
+    return true;
+
+def groupBinaries(binaryList):
+    """
+
+    :param binaryList:
+    :return:
+    """
+    return true;
+
+def separateGroupBinariesIn6Bits(binariesString):
+    """
+    
+    :param binariesString:
+    :return:
+    """
+    return true;
+
+def allElementIn6Bits(binaries6BitsList):
+    """
+
+    :param binaries6BitsList:
+    :return:
+    """
+    return true;
+
+def sixBitsToDecimal(binary6BitsChar):
+    """
+
+    :param binary6BitsChar:
+    :return:
+    """
+    return true;
+
+def decimalToBase64(decimalChar):
+    """
+
+    :param decimalChar:
+    :return:
+    """
+    return true;
+
+def base64ListToString(base64List):
+    """
+
+    :param base64List:
+    :return:
+    """
+    return true;
+
+def completeBase64StringTo8(base64String):
+    """
+
+    :param base64String:
+    :return:
+    """
+    return true;
