@@ -28,7 +28,7 @@ def char_to_ascii(char_list):
     index = 0
     while index < len(char_list):
         char_list[index] = ord(char_list[index])
-        index += 1;
+        index += 1
     ascii_to_binary(char_list)
 
 
@@ -42,27 +42,26 @@ def ascii_to_binary(ascii_list):
     while index < len(ascii_list):
         ascii_list[index] = str(int(bin(ascii_list[index])[2:]))
         index += 1
-    binaryTo8Bits(charList)
+    binary_to_8bits(ascii_list)
 
 
-def binary_to_8bits(binaryChar):
+def binary_to_8bits(binary_list):
     """
     Function that convert binary list in 8bits list
     :param binaryList: Array of binary 8bits element
     :return: Array of 8bits list
     """
-    binaryList2 = []
-    for bnr in binaryList:
+    binary_list2 = []
+    for bnr in binary_list:
         x = bnr[::-1]  # this reverses an array
         while len(x) < 8:
             x += '0'
         bnr = x[::-1]
-        binaryList2.append(bnr)
-    print(binaryList2)
-    groupBinaries(binaryList2)
+        binary_list2.append(bnr)
+    group_binaries(binary_list2)
 
 
-def group_binaries(binaryList):
+def group_binaries(binary_list):
     """
     take all binary 8bit and concatenate in one string
     :param binaryList: Array of 8bits elements
@@ -71,26 +70,30 @@ def group_binaries(binaryList):
     binary_string = ""
     for binary in binary_list:
         binary_string += binary
-    separateGroupBinariesIn6Bits(binary_string)
-    
+    separate_group_binaries_in6bits(binary_string)
 
 
-def separate_group_binaries_in6bits(binariesString):
+def separate_group_binaries_in6bits(binaries_string):
     """
-
-    :param binariesString:
-    :return:
+    Take the sting and convert it in list of 6bits
+    :param binariesString: string of 6bits
+    :return: array of 6bits string
     """
-    return True
+    x = 6
+    binaries_6Bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
+    all_element_in_6bits(binaries_6Bits_list)
 
 
-def all_element_in_6bits(binaries6BitsList):
+def all_element_in_6bits(binaries_6Bits_list):
     """
-
-    :param binaries6BitsList:
-    :return:
+    add for the last 6bits in the array and complete by adding 0
+    :param binaries6BitsList: list of 6bits
+    :return: array of complete 6bits list
     """
-    return True
+    while len(binaries_6Bits_list[len(binaries_6Bits_list) - 1]) < 6:
+        binaries_6Bits_list[len(binaries_6Bits_list) - 1] += '0'
+
+    six_bits_to_decimal(binaries_6Bits_list)
 
 
 def six_bits_to_decimal(binary_6bits_char):
