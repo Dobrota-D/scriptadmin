@@ -1,3 +1,6 @@
+from email.charset import BASE64
+
+
 def get_user_input():
     """
     Function that ask the User for a string
@@ -6,6 +9,23 @@ def get_user_input():
     user_input = input("Entrez des caractères à convertir base64: ")
     seperate_char(user_input)
 
+def encode_ASCII(source, output_file):
+    """
+    Encode an ASCII string into base 64
+    
+    :param source: string to encode
+    :param output_file: link to the output file
+    """
+    output = seperate_char(source)
+    print(output)
+    
+    if output_file:
+      # Write the output content in the output file
+      with open(output_file, "w") as f:
+        f.write(output)
+        f.close()
+    else:
+      print(output)
 
 def seperate_char(user_input):
     """
@@ -159,6 +179,5 @@ def complete_base64_string_to8(base64_string):
     for i in range(nearest_multiple - len(base64_string)):
         base64_string += '='
 
-    print(base64_string)
-
-get_user_input()
+    print('here', base64_string)
+    return base64_string

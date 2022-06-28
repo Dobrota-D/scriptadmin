@@ -1,6 +1,5 @@
 from os import sep
 
-
 def get_user_input():
     """
     Function that ask the User for a string
@@ -9,6 +8,8 @@ def get_user_input():
     user_input = input("Entrez des caractères en Base64 à décoder: ")
     delete_neutral_char(user_input)
 
+def decode_base64(source, output):
+  delete_neutral_char(source)
     
 def delete_neutral_char(user_input):
     """
@@ -145,5 +146,3 @@ def char_list_to_string(char_list):
 
     char_string = ''.join(char_list)
     print(char_string)
-    
-get_user_input()

@@ -1,4 +1,6 @@
 import argparse
+from encode import encode_ASCII
+from decode import decode_base64
 
 def get_source(string, filename):
   """
@@ -14,7 +16,6 @@ def get_source(string, filename):
       return content
   
   return string
-
 
 
 parser = argparse.ArgumentParser()
@@ -40,15 +41,13 @@ if args.encode:
   print(f"Encodage de la chaîne de caractères '{source}'")
   print(f"Fichier de sortie : {args.output}" if args.output else "Pas de fichier de sortie")
   
-  # -------------------------------------------
-  # la_fonction_qui_encode(source, args.output)
-  # -------------------------------------------
+  # Encoding process
+  encode_ASCII(source, args.output)
   
 elif args.decode:
   
   print(f"Décodage de la chaîne de caractères '{source}'")
   print(f"Fichier de sortie : {args.output}" if args.output else "Pas de fichier de sortie")
   
-  # -------------------------------------------
-  # la_fonction_qui_decode(source, args.output)
-  # -------------------------------------------
+  # Decoding process
+  decode_base64(source, args.output)
