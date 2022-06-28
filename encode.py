@@ -1,4 +1,3 @@
-
 def get_user_input():
     """
     Function that ask the User for a string
