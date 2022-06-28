@@ -97,8 +97,8 @@ def separate_group_binaries_in6bits(binaries_string):
     :return: array of 6bits string
     """
     x = 6
-    binaries_6Bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
-    return all_element_in_6bits(binaries_6Bits_list)
+    binaries_6bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
+    return all_element_in_6bits(binaries_6bits_list)
 
 
 def all_element_in_6bits(binaries_6bits_list):
@@ -110,7 +110,7 @@ def all_element_in_6bits(binaries_6bits_list):
     while len(binaries_6bits_list[len(binaries_6bits_list) - 1]) < 6:
         binaries_6bits_list[len(binaries_6bits_list) - 1] += '0'
 
-    return six_bits_to_decimal(binaries_6Bits_list)
+    return six_bits_to_decimal(binaries_6bits_list)
 
 
 def six_bits_to_decimal(binary_6bits_char):
