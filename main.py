@@ -161,5 +161,4 @@ def complete_base64_string_to8(base64_string):
 
     print(base64_string)
 
-
 get_user_input()
