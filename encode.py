@@ -1,6 +1,5 @@
 from email.charset import BASE64
 
-
 def get_user_input():
     """
     Function that ask the User for a string
@@ -100,20 +99,20 @@ def separate_group_binaries_in6bits(binaries_string):
     :return: array of 6bits string
     """
     x = 6
-    binaries_6Bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
-    all_element_in_6bits(binaries_6Bits_list)
+    binaries_6bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
+    all_element_in_6bits(binaries_6bits_list)
 
 
-def all_element_in_6bits(binaries_6Bits_list):
+def all_element_in_6bits(binaries_6bits_list):
     """
     add for the last 6bits in the array and complete by adding 0
     :param binaries6BitsList: list of 6bits
     :return: array of complete 6bits list
     """
-    while len(binaries_6Bits_list[len(binaries_6Bits_list) - 1]) < 6:
-        binaries_6Bits_list[len(binaries_6Bits_list) - 1] += '0'
+    while len(binaries_6bits_list[len(binaries_6bits_list) - 1]) < 6:
+        binaries_6bits_list[len(binaries_6bits_list) - 1] += '0'
 
-    six_bits_to_decimal(binaries_6Bits_list)
+    six_bits_to_decimal(binaries_6bits_list)
 
 
 def six_bits_to_decimal(binary_6bits_char):

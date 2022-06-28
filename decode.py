@@ -8,7 +8,7 @@ def get_user_input():
     user_input = input("Entrez des caractères en Base64 à décoder: ")
     delete_neutral_char(user_input)
 
-def decode_base64(source, output):
+def decode_base64(source, _output):
   delete_neutral_char(source)
     
 def delete_neutral_char(user_input):
