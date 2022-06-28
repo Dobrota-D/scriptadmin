@@ -1,5 +1,3 @@
-from email.charset import BASE64
-
 
 def get_user_input():
     """
@@ -17,7 +15,6 @@ def encode_ASCII(source, output_file):
     :param output_file: link to the output file
     """
     output = seperate_char(source)
-    print(output)
     
     if output_file:
       # Write the output content in the output file
@@ -36,7 +33,7 @@ def seperate_char(user_input):
     char_list = []
     for x in user_input:
         char_list.append(x)
-    char_to_ascii(char_list)
+    return char_to_ascii(char_list)
 
 
 def char_to_ascii(char_list):
@@ -49,7 +46,7 @@ def char_to_ascii(char_list):
     while index < len(char_list):
         char_list[index] = ord(char_list[index])
         index += 1
-    ascii_to_binary(char_list)
+    return ascii_to_binary(char_list)
 
 
 def ascii_to_binary(ascii_list):
@@ -62,7 +59,7 @@ def ascii_to_binary(ascii_list):
     while index < len(ascii_list):
         ascii_list[index] = str(int(bin(ascii_list[index])[2:]))
         index += 1
-    binary_to_8bits(ascii_list)
+    return binary_to_8bits(ascii_list)
 
 
 def binary_to_8bits(binary_list):
@@ -78,7 +75,7 @@ def binary_to_8bits(binary_list):
             x += '0'
         bnr = x[::-1]
         binary_list2.append(bnr)
-    group_binaries(binary_list2)
+    return group_binaries(binary_list2)
 
 
 def group_binaries(binary_list):
@@ -90,7 +87,7 @@ def group_binaries(binary_list):
     binary_string = ""
     for binary in binary_list:
         binary_string += binary
-    separate_group_binaries_in6bits(binary_string)
+    return separate_group_binaries_in6bits(binary_string)
 
 
 def separate_group_binaries_in6bits(binaries_string):
@@ -101,7 +98,7 @@ def separate_group_binaries_in6bits(binaries_string):
     """
     x = 6
     binaries_6Bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
-    all_element_in_6bits(binaries_6Bits_list)
+    return all_element_in_6bits(binaries_6Bits_list)
 
 
 def all_element_in_6bits(binaries_6Bits_list):
@@ -113,7 +110,7 @@ def all_element_in_6bits(binaries_6Bits_list):
     while len(binaries_6Bits_list[len(binaries_6Bits_list) - 1]) < 6:
         binaries_6Bits_list[len(binaries_6Bits_list) - 1] += '0'
 
-    six_bits_to_decimal(binaries_6Bits_list)
+    return six_bits_to_decimal(binaries_6Bits_list)
 
 
 def six_bits_to_decimal(binary_6bits_char):
@@ -127,7 +124,7 @@ def six_bits_to_decimal(binary_6bits_char):
     for index, value in enumerate(binary_6bits_char):
         binary_6bits_char[index] = int(value, 2)
 
-    decimal_to_base64(binary_6bits_char)
+    return decimal_to_base64(binary_6bits_char)
 
 
 def decimal_to_base64(decimal_char):
@@ -152,7 +149,7 @@ def decimal_to_base64(decimal_char):
     for index, value in enumerate(decimal_char):
         decimal_char[index] = base64_table[(int(value))]
 
-    base64_list_to_string(decimal_char)
+    return base64_list_to_string(decimal_char)
 
 
 def base64_list_to_string(base64_list):
@@ -164,7 +161,7 @@ def base64_list_to_string(base64_list):
     """
 
     base64_string = ''.join(base64_list)
-    complete_base64_string_to8(base64_string)
+    return complete_base64_string_to8(base64_string)
 
 
 def complete_base64_string_to8(base64_string):
@@ -178,6 +175,5 @@ def complete_base64_string_to8(base64_string):
 
     for i in range(nearest_multiple - len(base64_string)):
         base64_string += '='
-
-    print('here', base64_string)
+        
     return base64_string

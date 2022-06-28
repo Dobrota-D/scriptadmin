@@ -38,6 +38,7 @@ source = get_source(args.string, args.filename)
 
 if args.encode:
   
+  print(f"Fichier source : {args.filename}" if args.filename else "Pas de fichier source")
   print(f"Encodage de la chaîne de caractères '{source}'")
   print(f"Fichier de sortie : {args.output}" if args.output else "Pas de fichier de sortie")
   
@@ -46,6 +47,7 @@ if args.encode:
   
 elif args.decode:
   
+  print(f"Fichier source : {args.filename}" if args.filename else "Pas de fichier source")
   print(f"Décodage de la chaîne de caractères '{source}'")
   print(f"Fichier de sortie : {args.output}" if args.output else "Pas de fichier de sortie")
   

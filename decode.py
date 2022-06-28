@@ -8,9 +8,23 @@ def get_user_input():
     user_input = input("Entrez des caractères en Base64 à décoder: ")
     delete_neutral_char(user_input)
 
-def decode_base64(source, output):
-  delete_neutral_char(source)
-    
+def decode_base64(source, output_file):
+  """
+  Decode a base64 encoded string
+  
+  :param source: base64 encoded string
+  :param output: output file
+  """
+  output = delete_neutral_char(source)
+  
+  if output_file:
+    # Write the output content in the output file
+      with open(output_file, "w") as f:
+        f.write(output)
+        f.close()
+  else:
+    print(output)
+  
 def delete_neutral_char(user_input):
     """
     Delete all the '=' to get the orignal string base64
@@ -18,7 +32,7 @@ def delete_neutral_char(user_input):
     :return: Base64 encoded without '=' string
     """
     base64_string = user_input.replace("=",'')
-    seperate_char(base64_string)
+    return seperate_char(base64_string)
     
 def seperate_char(base64_string):
     """
@@ -29,12 +43,11 @@ def seperate_char(base64_string):
     base64_list = []
     for x in base64_string:
         base64_list.append(x)
-    base64_to_decimal(base64_list)
+    return base64_to_decimal(base64_list)
     
 def base64_to_decimal(base64_list):
     """
     Transform each base64 character by it's value in 
-
     :param base64_list: array of base64 elements
     :return: array of decimal elements
     """
@@ -56,19 +69,18 @@ def base64_to_decimal(base64_list):
            if value == base64_value :
                base64_list[index] = base64_index
 
-    decimal_to_6bits(base64_list)
+    return decimal_to_6bits(base64_list)
     
 def decimal_to_6bits(decimal_list):
     """
     Transform each decimal value of the array into its binary element
-
     :param decimal_list: sarray of decimal values
     :return: array of 6bits binary element
     """
     for index, value in enumerate(decimal_list):
         decimal_list[index] = str(int(bin(value)[2:]))
 
-    all_element_in_6bits(decimal_list)
+    return all_element_in_6bits(decimal_list)
     
 def all_element_in_6bits(binaries_6bits_list):
     """
@@ -84,7 +96,7 @@ def all_element_in_6bits(binaries_6bits_list):
             length +=1
         binaries_6bits_list[index] = value[::-1]
 
-    group_binaries(binaries_6bits_list)
+    return group_binaries(binaries_6bits_list)
 
 def group_binaries(binary_list):
     """
@@ -93,7 +105,7 @@ def group_binaries(binary_list):
     :return: One String of all 6bits
     """
     binary_string = ''.join(binary_list)
-    separate_group_binaries_in8bits(binary_string)
+    return separate_group_binaries_in8bits(binary_string)
     
 def separate_group_binaries_in8bits(binaries_string):
     """
@@ -103,7 +115,7 @@ def separate_group_binaries_in8bits(binaries_string):
     """
     x = 8
     binaries_8bits_list = [binaries_string[i: i + x] for i in range(0, len(binaries_string), x)]
-    eigth_bits_to_binary(binaries_8bits_list)
+    return eigth_bits_to_binary(binaries_8bits_list)
     
 def eigth_bits_to_binary(eigth_bits_list):
     """
@@ -113,7 +125,7 @@ def eigth_bits_to_binary(eigth_bits_list):
     """
     if len(eigth_bits_list[len(eigth_bits_list)-1]) < 8:
         eigth_bits_list.pop(len(eigth_bits_list)-1)
-    binary_to_ascii(eigth_bits_list)
+    return binary_to_ascii(eigth_bits_list)
     
 def binary_to_ascii(binary_list):
     """
@@ -124,7 +136,7 @@ def binary_to_ascii(binary_list):
     for index, value in enumerate(binary_list):
         binary_list[index] = int(value, 2)
         
-    ascii_to_char(binary_list)
+    return ascii_to_char(binary_list)
 
 def ascii_to_char(ascii_list):
     """
@@ -135,7 +147,7 @@ def ascii_to_char(ascii_list):
     for index, value in enumerate(ascii_list):
         ascii_list[index] = chr(value)
         
-    char_list_to_string(ascii_list)
+    return char_list_to_string(ascii_list)
     
 def char_list_to_string(char_list):
     """
@@ -145,4 +157,4 @@ def char_list_to_string(char_list):
     """
 
     char_string = ''.join(char_list)
-    print(char_string)
+    return char_string
