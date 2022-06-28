@@ -101,14 +101,14 @@ def separate_group_binaries_in6bits(binaries_string):
     return all_element_in_6bits(binaries_6Bits_list)
 
 
-def all_element_in_6bits(binaries_6Bits_list):
+def all_element_in_6bits(binaries_6bits_list):
     """
     add for the last 6bits in the array and complete by adding 0
     :param binaries6BitsList: list of 6bits
     :return: array of complete 6bits list
     """
-    while len(binaries_6Bits_list[len(binaries_6Bits_list) - 1]) < 6:
-        binaries_6Bits_list[len(binaries_6Bits_list) - 1] += '0'
+    while len(binaries_6bits_list[len(binaries_6bits_list) - 1]) < 6:
+        binaries_6bits_list[len(binaries_6bits_list) - 1] += '0'
 
     return six_bits_to_decimal(binaries_6Bits_list)
 
