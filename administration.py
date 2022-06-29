@@ -20,7 +20,6 @@ def get_interval():
 def get_cpu_metrics(interval):
   """
   Get and send CPU metrics
-  
   :param interval: interval between two metrics pulling
   """
   percent_of_use = psutil.cpu_percent(interval)
@@ -33,12 +32,24 @@ def get_cpu_metrics(interval):
 def get_storage_disk_metrics():
   """
   Get and send disk storage metrics
-  
-  :param interval: interval between two metrics pulling
   """
   usage = psutil.disk_usage('/')
   
   send_disk_storage_metrics(usage)
+    
+def get_sensor_metrics():
+  """
+  Get and send sensor metrics
+  """  
+  temperatures = psutil.sensors_battery()
+  send_sensors_metrics(temperatures)
+    
+def get_network_metrics():
+  """
+  Get and send network metrics
+  """
+  network = psutil.net_io_counters()
+  send_networks_metrics(network)
     
 
 interval = get_interval()
@@ -47,28 +58,7 @@ interval = get_interval()
 while True:
   get_cpu_metrics(interval)
   get_storage_disk_metrics()
-
-  time.sleep(interval)
-
-def watch_cpu_metrics(interval):
-  """
-  Watch for cpu metrics 
+  get_sensor_metrics()
+  get_network_metrics()
   
-  :param interval: interval between two metrics pull
-  """
-  # Get percentage of cpu usage fro each cpu
-  print('CPU usage for each CPU (%)')
-  for x in range(3):
-    print(psutil.cpu_percent(interval, percpu=True))
-
-  # Get CPU count
-  print('\nCPU count:', psutil.cpu_count())
-  print('CPU count (physical)', psutil.cpu_count(logical=False))
-
-
-
-
-interval = get_interval()
-print('Interval:', str(interval) + 's\n')
-
-watch_cpu_metrics(interval)
+  time.sleep(interval)

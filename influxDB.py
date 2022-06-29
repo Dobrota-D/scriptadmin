@@ -4,12 +4,12 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 # Initialize client
 token = ton token
-org = ton organisation
+org = ton org
 url = ton url
 
 client = influxdb_client.InfluxDBClient(url, token, org)
 
-bucket= ton bucket
+bucket=ton bucket
 
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
@@ -49,10 +49,38 @@ def send_disk_storage_metrics(usage):
   record = (
     Point("measurement1")
     .tag("tag", "disk_storage")
-    .field("total", usage.total)
-    .field("used", usage.used)
-    .field("free", usage.free)
-    .field("percent", usage.percent)
+    .field("disk_total", usage.total/1000000000)
+    .field("disk_used", usage.used/1000000000)
+    .field("disk_free", usage.free/1000000000)
+    .field("disk_percent", usage.percent)
   )
   write_api.write(bucket, org, record)
 
+def send_sensors_metrics(battery):
+  """
+  Send sensors metrics into the Influx database
+  :param battery: battery sensors statistics
+  """
+  record = (
+    Point("measurement1")
+    .tag("tag", "sensors")
+    .field("percent", battery.percent)
+    .field("secsleft", battery.secsleft)
+    .field("power_plugged", battery.power_plugged)
+  )
+  write_api.write(bucket, org, record)
+  
+def send_networks_metrics(network):
+  """
+  Send networks metrics into the Influx database
+  :param network: network statistics
+  """
+  record = (
+    Point("measurement1")
+    .tag("tag", "network")
+    .field("bytes_sent", network.bytes_sent)
+    .field("bytes_recv", network.bytes_recv)
+    .field("packets_sent", network.packets_sent)
+    .field("packets_recv", network.packets_recv)
+  )
+  write_api.write(bucket, org, record)
