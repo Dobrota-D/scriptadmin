@@ -16,6 +16,7 @@ def get_interval():
   
   return args.interval
 
+
 def get_cpu_metrics(interval):
   """
   Get and send CPU metrics
