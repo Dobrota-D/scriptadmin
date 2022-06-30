@@ -1,22 +1,15 @@
-from tracemalloc import get_traced_memory
-import psutil
 import argparse
+import logging
+import psutil
 import time
-
 from influxDB import *
 
-def get_interval():
-  """
-  Get the interval before two metrics pull
-  
-  :return: interval
-  """
-  parser = argparse.ArgumentParser()
-  parser.add_argument("-i", "--interval", help="Nombre de secondes d'intervalle", type=int, required=True)
-  args = parser.parse_args()
-  
-  return args.interval
 
+def get_log_level():
+  """
+  Get the log level from args
+  :return: log level
+  """
 
 def get_cpu_metrics(interval):
   """
@@ -59,17 +52,38 @@ def get_memory_metrics():
   virtual = psutil.virtual_memory()
   swap = psutil.swap_memory()
   
-  send_memory_metrics(virtual, swap)
+  send_memory_metrics(virtual, swap)  
     
+# Argparse initialization
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--interval", help="Nombre de secondes d'intervalle", type=int, required=True)
+parser.add_argument("-l", "--logging", help="Niveau de logging", choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], default='CRITICAL')
+args = parser.parse_args()
 
-interval = get_interval()
+# Logging initialization
+logging.basicConfig(
+  format='%(asctime)s [%(levelname)s]: %(message)s',
+  datefmt='%d-%m-%Y:%H:%M:%S',
+  filename='administration.log',
+  encoding='utf-8',
+  level=args.logging
+)
+
+logging.info('Script starting...')
+logging.info(f'Interval = {args.interval}s')
+
 
 # Infinity loop who send every metrics at the interval set by user
+loop_nb = 0
 while True:
-  get_cpu_metrics(interval)
+  logging.info(f'Starting the loop {loop_nb}')
+  loop_nb += 1
+  
+  # Call all metrics pulling functions
+  get_cpu_metrics(args.interval)
   get_storage_disk_metrics()
   get_sensor_metrics()
   get_network_metrics()
   get_memory_metrics()
   
-  time.sleep(interval)
+  time.sleep(args.interval)
