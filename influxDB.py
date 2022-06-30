@@ -1,19 +1,18 @@
-import influxdb_client, os, time
-from influxdb_client import InfluxDBClient, Point, WritePrecision
-from influxdb_client.client.write_api import SYNCHRONOUS
+import influxdb_client, os
+from influxdb_client import Point
+from influxdb_client.client.write_api import ASYNCHRONOUS
 from dotenv import load_dotenv
 
-load_dotenv()
-
 # Initialize client
+load_dotenv()
 token = os.getenv('TOKEN_API')
 org = os.getenv('ORGANISATION_NAME')
 url = os.getenv('URL_DB')
 
 client = influxdb_client.InfluxDBClient(url, token, org)
-bucket= os.getenv('BUCKET_NAME')
+bucket=os.getenv('BUCKET_NAME')
 
-write_api = client.write_api(write_options=SYNCHRONOUS)
+write_api = client.write_api(write_options=ASYNCHRONOUS)
 
 
 def send_cpu_metrics(percent_of_use, percent_of_use_per_cpu, count, count_physical):
