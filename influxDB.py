@@ -53,7 +53,7 @@ def send_disk_storage_metrics(usage):
     .field("total", usage.total)
     .field("used", usage.used)
     .field("free", usage.free)
-    .field("percent", usage.percent)
+    .field("percent", int(usage.percent))
   )
   write_api.write(bucket, org, record)
 
@@ -65,7 +65,7 @@ def send_sensors_metrics(battery):
   record = (
     Point("measurement1")
     .tag("tag", "sensors")
-    .field("percent", battery.percent)
+    .field("percent", int(battery.percent))
     #.field("secsleft", battery.secsleft)
     #.field("power_plugged", battery.power_plugged)
   )
