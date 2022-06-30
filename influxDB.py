@@ -1,14 +1,17 @@
 import influxdb_client, os, time
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Initialize client
-token = xxx
-org = xxx
-url = xxx
+token = os.getenv('TOKEN_API')
+org = os.getenv('ORGANISATION_NAME')
+url = os.getenv('URL_DB')
 
 client = influxdb_client.InfluxDBClient(url, token, org)
-bucket= xxx
+bucket= os.getenv('BUCKET_NAME')
 
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
@@ -51,7 +54,7 @@ def send_disk_storage_metrics(usage):
     .field("total", usage.total)
     .field("used", usage.used)
     .field("free", usage.free)
-    .field("percent", usage.percent)
+    .field("percent", int(usage.percent))
   )
   write_api.write(bucket, org, record)
 
@@ -63,7 +66,7 @@ def send_sensors_metrics(battery):
   record = (
     Point("measurement1")
     .tag("tag", "sensors")
-    .field("percent", battery.percent)
+    .field("percent", int(battery.percent))
     #.field("secsleft", battery.secsleft)
     #.field("power_plugged", battery.power_plugged)
   )
