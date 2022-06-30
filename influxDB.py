@@ -3,13 +3,12 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
 # Initialize client
-token = ton token
-org = ton org
-url = ton url
+token = xxx
+org = xxx
+url = xxx
 
 client = influxdb_client.InfluxDBClient(url, token, org)
-
-bucket=ton bucket
+bucket= xxx
 
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
@@ -49,10 +48,10 @@ def send_disk_storage_metrics(usage):
   record = (
     Point("measurement1")
     .tag("tag", "disk_storage")
-    .field("disk_total", usage.total/1000000000)
-    .field("disk_used", usage.used/1000000000)
-    .field("disk_free", usage.free/1000000000)
-    .field("disk_percent", usage.percent)
+    .field("total", usage.total)
+    .field("used", usage.used)
+    .field("free", usage.free)
+    .field("percent", usage.percent)
   )
   write_api.write(bucket, org, record)
 
@@ -65,8 +64,8 @@ def send_sensors_metrics(battery):
     Point("measurement1")
     .tag("tag", "sensors")
     .field("percent", battery.percent)
-    .field("secsleft", battery.secsleft)
-    .field("power_plugged", battery.power_plugged)
+    #.field("secsleft", battery.secsleft)
+    #.field("power_plugged", battery.power_plugged)
   )
   write_api.write(bucket, org, record)
   
@@ -82,5 +81,31 @@ def send_networks_metrics(network):
     .field("bytes_recv", network.bytes_recv)
     .field("packets_sent", network.packets_sent)
     .field("packets_recv", network.packets_recv)
+  )
+  write_api.write(bucket, org, record)
+  
+def send_memory_metrics(virtual, swap):
+  """
+  Send memory metrics into the Influx database
+  :virtual: virtual memory statistics
+  :swap: swap memory statistics
+  """
+  record = (
+    Point("measurement1")
+    .tag("tag", "memory")
+    .field("virtual_total", virtual.total)
+    .field("virtual_available", virtual.available)
+    .field("virtual_percent", virtual.percent)
+    .field("virtual_used", virtual.used)
+    .field("virtual_free", virtual.free)
+    .field("virtual_active", virtual.active)
+    .field("virtual_inactive", virtual.inactive)
+    .field("virtual_wired", virtual.wired)
+    .field("swap_total", swap.total)
+    .field("swap_used", swap.used)
+    .field("swap_free", swap.free)
+    .field("swap_percent", swap.percent)
+    .field("swap_sin", swap.sin)
+    .field("swap_sout", swap.sout)
   )
   write_api.write(bucket, org, record)
