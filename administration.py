@@ -1,3 +1,4 @@
+from tracemalloc import get_traced_memory
 import psutil
 import argparse
 import time
@@ -51,6 +52,15 @@ def get_network_metrics():
   network = psutil.net_io_counters()
   send_networks_metrics(network)
     
+def get_memory_metrics():
+  """
+  Get and send memory metrics
+  """
+  virtual = psutil.virtual_memory()
+  swap = psutil.swap_memory()
+  
+  send_memory_metrics(virtual, swap)
+    
 
 interval = get_interval()
 
@@ -60,5 +70,6 @@ while True:
   get_storage_disk_metrics()
   get_sensor_metrics()
   get_network_metrics()
+  get_memory_metrics()
   
   time.sleep(interval)
